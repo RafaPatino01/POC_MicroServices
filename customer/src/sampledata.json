@@ -1,0 +1,72 @@
+[
+    {
+    "name":"alphonso mango",
+    "desc":"great Quality of Mango",
+    "type":"fruits",
+    "banner":"https://images.immediate.co.uk/production/volatile/sites/30/2018/08/mango-fee0d79-e1648560084294.jpg?quality=90&resize=768,574",
+    "unit":1,
+    "price":300, 
+    "available":true,
+    "suplier":"Golden seed firming"
+},
+{
+    "name":"Apples",
+    "desc":"great Quality of Apple",
+    "type":"fruits",
+    "banner":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/847px-Red_Apple.jpg",
+    "unit":1,
+    "price":140, 
+    "available":true,
+    "suplier":"Golden seed firming"
+},
+{
+    "name":"Kesar Mango",
+    "desc":"great Quality of Mango",
+    "type":"fruits",
+    "banner":"https://www.chicagosfoodbank.org/wp-content/uploads/2022/03/Mango-1.jpg",
+    "unit":1,
+    "price":170, 
+    "available":true,
+    "suplier":"Golden seed firming"
+},
+{
+    "name":"Langra Mango",
+    "desc":"great Quality of Mango",
+    "type":"fruits",
+    "banner":"https://exoticfruitbox.com/wp-content/uploads/2015/10/mango.jpg",
+    "unit":1,
+    "price":280, 
+    "available":true,
+    "suplier":"Golden seed firming"
+},
+{
+    "name":"Broccoli",
+    "desc":"great Quality of Fresh Vegetable",
+    "type":"vegetables",
+    "banner":"https://www.savoryonline.com/app/uploads/recipes/154194/blanched-broccoli-florets-2.jpg",
+    "unit":1,
+    "price":280, 
+    "available":true,
+    "suplier":"Golden seed firming"
+},
+{
+    "name":"Cauliflower",
+    "desc":"great Quality of Fresh Vegetable",
+    "type":"vegetables",
+    "banner":"https://www.jiomart.com/images/product/600x600/590003537/cauliflower-1-pc-approx-600-g-1000-g-product-images-o590003537-p590003537-0-202203170515.jpg",
+    "unit":1,
+    "price":280, 
+    "available":true,
+    "suplier":"Golden seed firming"
+},
+{
+    "name":"Olive Oil",
+    "desc":"great Quality of Oil",
+    "type":"oils",
+    "banner":"https://bulknaturaloils.com/media/catalog/product/cache/5b89197651ea0053483b6b3397eafb60/o/l/oliveoil_1.jpg",
+    "unit":1,
+    "price":400, 
+    "available":true,
+    "suplier":"Golden seed firming"
+}
+]
