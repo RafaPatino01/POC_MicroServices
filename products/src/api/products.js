@@ -5,19 +5,47 @@ const UserAuth = require('./middlewares/auth')
 module.exports = (app) => {
     
     const service = new ProductService();
+    
+    // ------------ SQL ------------------------------------
+    // ------------ SQL ------------------------------------
+    // ------------ SQL ------------------------------------
+
+
+    app.get('/', async (req,res,next) => {
+        //check validation
+        try {
+            const { data } = await service.GetProducts_SQL();
+            //const { data } = await service.GetProducts();            
+            return res.status(200).json(data);
+        } catch (error) {
+            next(err)
+        }
+        
+    });
 
     app.post('/product/create', async(req,res,next) => {
-        
         try {
             const { name, desc, type, unit,price, available, suplier, banner } = req.body; 
             // validation
-            const { data } =  await service.CreateProduct({ name, desc, type, unit,price, available, suplier, banner });
-            return res.json(data);
+            const { data } =  await service.CreateProduct_SQL({ name, desc, type, unit,price, available, suplier, banner });
+            return res.status(200).json(data);
             
         } catch (err) {
             next(err)    
-        }
+        } 
+    });
+    
+    app.get('/:id', async(req,res,next) => {
         
+        const productId = req.params.id;
+
+        try {
+            const { data } = await service.GetProductDescription_SQL(productId);
+            return res.status(200).json(data);
+        } catch (err) {
+            next(err)
+        }
+
     });
 
     app.get('/category/:type', async(req,res,next) => {
@@ -25,21 +53,7 @@ module.exports = (app) => {
         const type = req.params.type;
         
         try {
-            const { data } = await service.GetProductsByCategory(type)
-            return res.status(200).json(data);
-
-        } catch (err) {
-            next(err)
-        }
-
-    });
-
-    app.get('/:id', async(req,res,next) => {
-        
-        const productId = req.params.id;
-
-        try {
-            const { data } = await service.GetProductDescription(productId);
+            const { data } = await service.GetProductsByCategory_SQL(type)
             return res.status(200).json(data);
 
         } catch (err) {
@@ -60,14 +74,14 @@ module.exports = (app) => {
         }
        
     });
-     
+
     app.put('/wishlist',UserAuth, async (req,res,next) => {
 
         const { _id } = req.user;
         try {
         
              // Get payload
-            const { data } = await service.GetProductPayload(_id, {productId: req.body._id}, "ADD_TO_WISHLIST")
+            const { data } = await service.GetProductPayload_SQL(_id, {productId: req.body._id}, "ADD_TO_WISHLIST")
 
             PublishCustomerEvent(data)
 
@@ -76,14 +90,14 @@ module.exports = (app) => {
             
         }
     });
-    
+
     app.delete('/wishlist/:id',UserAuth, async (req,res,next) => {
 
         const { _id } = req.user;
         const productId = req.params.id;
 
         try {
-            const { data } = await service.GetProductPayload(_id, { productId }, "REMOVE_FROM_WISHLIST")
+            const { data } = await service.GetProductPayload_SQL(_id, { productId }, "REMOVE_FROM_WISHLIST")
             
             PublishCustomerEvent(data);
 
@@ -93,14 +107,13 @@ module.exports = (app) => {
         }
     });
 
-
     app.put('/cart',UserAuth, async (req,res,next) => {
         
         const { _id } = req.user;
         
         try {     
 
-            const { data } = await service.GetProductPayload(_id, { productId: req.body._id, qty: req.body.qty }, "ADD_TO_CART")
+            const { data } = await service.GetProductPayload_SQL(_id, { productId: req.body._id, qty: req.body.qty }, "ADD_TO_CART")
 
             PublishCustomerEvent(data)
             PublishShoppingEvent(data)
@@ -116,7 +129,7 @@ module.exports = (app) => {
             next(err)
         }
     });
-    
+
     app.delete('/cart/:id',UserAuth, async (req,res,next) => {
 
         const { _id } = req.user;
@@ -124,7 +137,7 @@ module.exports = (app) => {
 
         try {
 
-            const { data } = await service.GetProductPayload(_id, { productId }, "REMOVE_FROM_CART")
+            const { data } = await service.GetProductPayload_SQL(_id, { productId }, "REMOVE_FROM_CART")
 
             PublishCustomerEvent(data)
             PublishShoppingEvent(data)
@@ -141,16 +154,4 @@ module.exports = (app) => {
         }
     });
 
-    //get Top products and category
-    app.get('/', async (req,res,next) => {
-        //check validation
-        try {
-            const { data} = await service.GetProducts();        
-            return res.status(200).json(data);
-        } catch (error) {
-            next(err)
-        }
-        
-    });
-    
 }
