@@ -52,7 +52,7 @@ module.exports.FormateData = (data) => {
 };
 
 module.exports.PublishCustomerEvent = async(payload) => {
-  axios.post('http://110.238.83.6:8000/customer/app-events', {
+  axios.post('http://110.238.83.6:30000/customer/app-events', {
     payload
   })
 }
