@@ -5,9 +5,10 @@ const { APIError } = require('../utils/app-errors');
 var mysql = require('mysql2');
 
 var con = mysql.createConnection({
-    host: "localhost",
+    host: "159.138.89.142",
+    port: 3306,
     user: "root",
-    password: "Tomiko@2023",
+    password: "Tomiko@2022",
     database: "shopping"
 });
 
